@@ -1,6 +1,7 @@
 import RedIsSoHot, { GreenBox, BlueBox } from "../components/box";
-import CountMan from "../components/countman";
 // deafult -> RedIsSoHot
+import CountMan from "../components/countman";
+import ObjectMan from "../components/objectman";
 
 function konbanwa({ username }) {
   return (
@@ -24,9 +25,10 @@ function Bonjour({ username }) {
 export default function BasicPage() {
   return (
     <>
-      <div>
-        <CountMan />
-      </div>
+      <ObjectMan />
+      <hr />
+      <CountMan />
+      <hr />
       <div>
         <p>
           Welcome! <konbanwa username="Yamamoto!" />

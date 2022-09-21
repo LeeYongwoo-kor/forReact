@@ -24,14 +24,13 @@ export default function CountMan() {
   return (
     <div>
       <div>
-        <span>Not Updater: {count}</span>
+        <h2>COUNT: {count}</h2>
         <button onClick={countHandler}>COUNTUP X 5</button>
+        <button onClick={countHandlerWithUpdater}>
+          COUNTUP X 5 with Updater
+        </button>
+        <button onClick={() => setCount(0)}>RESET</button>
       </div>
-      <div>
-        <span>Updater: {count}</span>
-        <button onClick={countHandlerWithUpdater}>COUNTUP X 5</button>
-      </div>
-      <button></button>
     </div>
   );
 }
