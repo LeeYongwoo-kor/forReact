@@ -1,4 +1,5 @@
-import RedIsSoHot, { GreenBox, BlueBox } from "../components/box";
+import { useState } from "react";
+import RedIsSoHot, { BlueBox, GreenBox } from "../components/box";
 // deafult -> RedIsSoHot
 import CountMan from "../components/countman";
 import ObjectMan from "../components/objectman";
@@ -22,12 +23,30 @@ function Bonjour({ username }) {
   return <div>Hello, {username}!</div>;
 }
 
+function wrongErrorHandler() {
+  throw new Error("Something bad happened!");
+  // ErrorBoundary는 Event Handler 내부에서 포착되지 않는다.
+  // Event Handler는 Rendering중에서 발생하지 않기 때문에!
+  // 때문에 직접 try/catch를 사용해서 에러를 처리하십시오!
+}
+
 export default function BasicPage() {
+  const [count, setCount] = useState(0);
+  const errorHandler = (val) => {
+    console.log(val);
+    // for re-rendering
+    if (val > 30) {
+      setCount(val);
+    }
+  };
+  if (count > 30) {
+    throw new Error("Something bad happened!");
+  }
   return (
     <>
       <ObjectMan />
       <hr />
-      <CountMan />
+      <CountMan parents={errorHandler} />
       <hr />
       <div>
         <p>
@@ -41,6 +60,10 @@ export default function BasicPage() {
           Welcome! <Bonjour username="" />
           <Bonjour username="Pujols!" />
         </p>
+        <button onClick={wrongErrorHandler} style={{ backgroundColor: "red" }}>
+          ErrorHandler is not working!!
+        </button>
+        ObjectMan.
       </div>
       <RedIsSoHot />
       <BlueBox />

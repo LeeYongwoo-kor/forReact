@@ -38,4 +38,10 @@ function DefaultErrorScreen({ error, errorInfo }) {
       </details>
     </div>
   );
+  /* ErrorBoundary는 다음과 같은 에러는 잡아주지 않는다!
+  1. Event Handler
+  2. Asynchronous Code
+  3. Server Side Rendering
+  4. Errors that occur in the Error Boundary itself, not in the child.
+  */
 }

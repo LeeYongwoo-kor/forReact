@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CountMan() {
+export default function CountMan({ parents }) {
   const [count, setCount] = useState(0);
 
   function countHandler() {
@@ -21,6 +21,10 @@ export default function CountMan() {
   }
   // Updater함수. state를 인자로 받고, 값은 최신값으로 보장된다.
 
+  function parentsCountHandler() {
+    parents(count);
+  }
+
   return (
     <div>
       <div>
@@ -31,6 +35,13 @@ export default function CountMan() {
         </button>
         <button onClick={() => setCount(0)}>RESET</button>
       </div>
+      <hr />
+      <h2>
+        {count > 30
+          ? "Error Boundary is ready!"
+          : "If count exceeds 30, Error Boundary is executed!"}
+      </h2>
+      <button onClick={parentsCountHandler}>EXCUTED</button>
     </div>
   );
 }
